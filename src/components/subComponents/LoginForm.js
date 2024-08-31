@@ -60,7 +60,7 @@ function LoginForm() {
                   {toggleSignup ? "Already Registered?" : "New to Netflix?"}
                 </span>
                 <span
-                  className="font-medium cursor-pointer"
+                  className="font-medium cursor-pointer "
                   onClick={toggleSignupButton}
                 >
                   {toggleSignup ? "Sign up now" : "Sign in now"}
