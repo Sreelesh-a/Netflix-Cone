@@ -1,7 +1,23 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
+import { checkLoginValid } from "../../utils/validate";
 
 function LoginForm() {
   const [toggleSignup, setToggleSignup] = useState(false);
+  const [LoginErrorMessage, setLoginErrorMessage] = useState(null);
+
+  const email = useRef(null);
+  const password = useRef(null);
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    console.log(email?.current?.value);
+    console.log(password?.current?.value);
+    const loginMessage = checkLoginValid(
+      email?.current?.value,
+      password?.current?.value
+    );
+    setLoginErrorMessage(loginMessage);
+  };
 
   const toggleSignupButton = () => {
     setToggleSignup(!toggleSignup);
@@ -9,14 +25,17 @@ function LoginForm() {
 
   return (
     <div className="w-full ">
-      <div className="absolute z-50 w-[30%]  ml-[35%] mt-32">
-        <div className="px-16 py-10 relative  bg-black bg-opacity-70 ">
+      <div className="absolute z-50 w-[90%] sm:w-[30%] ml-[5%]  sm:ml-[35%] mt-28  sm:mt-32">
+        <div className="sm:px-16 px-6 rounded-lg  py-2 sm:py-10 relative  bg-black bg-opacity-70 ">
           <div className="text-3xl text-white py-6 font-semibold">
             {" "}
             {toggleSignup ? "Sign Up" : "Sign In"}
           </div>
           <div className="">
-            <form className="flex flex-wrap gap-y-6">
+            <form
+              onSubmit={(e) => e.preventDefault}
+              className="flex flex-wrap gap-y-6"
+            >
               {toggleSignup && (
                 <input
                   type="text"
@@ -25,18 +44,24 @@ function LoginForm() {
                 />
               )}
               <input
-                type="text"
+                ref={email}
+                type="email"
                 placeholder="Email Address"
                 className="h-11 border-[.01rem] border-white w-full px-6 rounded-sm border-opacity-40 bg-transparent text-white"
               />
               <input
+                ref={password}
                 type="password"
                 placeholder="Password"
                 className=" h-11 bg-transparent border-[.01rem] border-white w-full px-6 rounded-sm border-opacity-40 text-white"
               />
+              {LoginErrorMessage && (
+                <p className="text-red-500">{LoginErrorMessage}</p>
+              )}
               <button
                 type="submit"
                 className=" bg-[#E50815] font-medium py-2 rounded-md text-white w-full "
+                onClick={(e) => handleFormSubmit(e)}
               >
                 {toggleSignup ? "Sign Up" : "Sign In"}
               </button>
@@ -55,7 +80,7 @@ function LoginForm() {
               <div className="mx-auto text-white opacity-90">
                 Forgot password?
               </div>
-              <div className="text-white flex gap-x-2 items-center">
+              <div className="text-white flex gap-x-2 mb-4 items-center">
                 <span className="opacity-50 ">
                   {toggleSignup ? "Already Registered?" : "New to Netflix?"}
                 </span>
