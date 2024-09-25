@@ -1,5 +1,10 @@
 import React, { useRef, useState } from "react";
 import { checkLoginValid } from "../../utils/validate";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import { auth } from "../../utils/firebase";
 
 function LoginForm() {
   const [toggleSignup, setToggleSignup] = useState(false);
@@ -10,13 +15,48 @@ function LoginForm() {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    console.log(email?.current?.value);
-    console.log(password?.current?.value);
+
     const loginMessage = checkLoginValid(
       email?.current?.value,
       password?.current?.value
     );
     setLoginErrorMessage(loginMessage);
+    if (loginMessage) return;
+    if (toggleSignup) {
+      createUserWithEmailAndPassword(
+        auth,
+        email?.current?.value,
+        password?.current?.value
+      )
+        .then((userCredential) => {
+          // Signed up
+          const user = userCredential.user;
+
+          // ...
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setLoginErrorMessage(errorCode + "-" + errorMessage);
+          // ..
+        });
+    } else {
+      signInWithEmailAndPassword(
+        auth,
+        email?.current?.value,
+        password?.current?.value
+      )
+        .then((userCredential) => {
+          // Signed in
+          const user = userCredential.user;
+          // ...
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setLoginErrorMessage(errorCode + "-" + errorMessage);
+        });
+    }
   };
 
   const toggleSignupButton = () => {
@@ -60,7 +100,7 @@ function LoginForm() {
               )}
               <button
                 type="submit"
-                className=" bg-[#E50815] font-medium py-2 rounded-md text-white w-full "
+                className=" bg-[#E50815] font-medium py-2 cursor-pointer rounded-md text-white w-full "
                 onClick={(e) => handleFormSubmit(e)}
               >
                 {toggleSignup ? "Sign Up" : "Sign In"}
@@ -88,7 +128,7 @@ function LoginForm() {
                   className="font-medium cursor-pointer "
                   onClick={toggleSignupButton}
                 >
-                  {toggleSignup ? "Sign up now" : "Sign in now"}
+                  {!toggleSignup ? "Sign up now" : "Sign in now"}
                 </span>
               </div>
             </form>
