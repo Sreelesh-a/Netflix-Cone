@@ -6,14 +6,20 @@ import {
 } from "firebase/auth";
 import { auth } from "../../utils/firebase";
 import { useNavigate } from "react-router-dom";
+import { USER_ICON } from "../../utils/constants";
+import { updateProfile } from "firebase/auth";
+import { addUser } from "../../utils/userSlice";
+import { useDispatch } from "react-redux";
 
 function LoginForm() {
   const [toggleSignup, setToggleSignup] = useState(false);
   const [LoginErrorMessage, setLoginErrorMessage] = useState(null);
   const navigate = useNavigate();
+  const dispatch=useDispatch()
 
   const email = useRef(null);
   const password = useRef(null);
+  const fname=useRef(null)
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -33,14 +39,37 @@ function LoginForm() {
         .then((userCredential) => {
           // Signed up
           const user = userCredential.user;
-          navigate("/browse");
+          updateProfile(auth.currentUser, {
+            displayName: fname && fname?.current?.value, photoURL: USER_ICON
+          }).then(() => {
+
+            const { uid, email, displayName, photoURL } = auth.currentUser;
+        dispatch(
+          addUser({
+            uid: uid,
+            email: email,
+            displayName: displayName,
+            photoURL: photoURL,
+          })
+        );
+            
+
+            navigate("/browse");
+            // console.log(user)
+            // Profile updated!
+            // ...
+          }).catch((error) => {
+            setLoginErrorMessage(error.message)
+          });
+          // navigate("/browse");
 
           // ...
         })
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
-          setLoginErrorMessage(errorCode + "-" + errorMessage);
+          setLoginErrorMessage(errorCode );
+          if(errorCode == "auth/email-already-in-use") setLoginErrorMessage("Email Already Registered, Please Login")
           // ..
         });
     } else {
@@ -52,7 +81,8 @@ function LoginForm() {
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
-          navigate("/browse");
+         navigate("/browse")
+          
           // ...
         })
         .catch((error) => {
@@ -60,6 +90,7 @@ function LoginForm() {
           const errorMessage = error.message;
           if (errorCode == "auth/invalid-credential")
             setLoginErrorMessage("User not found");
+        
         });
     }
   };
@@ -83,6 +114,7 @@ function LoginForm() {
             >
               {toggleSignup && (
                 <input
+                ref={fname}
                   type="text"
                   placeholder="Full Name"
                   className="h-11 border-[.01rem] border-white w-full px-6 rounded-sm border-opacity-40 bg-transparent text-white"
