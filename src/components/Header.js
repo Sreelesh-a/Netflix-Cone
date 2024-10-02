@@ -1,29 +1,55 @@
 import React, { useEffect, useState } from "react";
 import { NETFLIX_LOGO, USER_ICON } from "../utils/constants";
-import { useSelector } from "react-redux";
-import { signOut } from "firebase/auth";
+import { useDispatch, useSelector } from "react-redux";
+import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
+import { addUser, removeUser } from "../utils/userSlice";
 
 function Header() {
+  const navigate = useNavigate()
   const user = useSelector((state) => state.user);
   const [showUserIcon, setShowUserIcon] = useState(false);
   const [showUserHeader,setShowUserHeader]=useState(false)
+  const dispatch=useDispatch()
 
-  useEffect(()=>{
-    if(user){
-      setShowUserHeader(true)
-    }
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User is signed in, see docs for a list of available properties
+        // https://firebase.google.com/docs/reference/js/auth.user
+        const { uid, email, displayName, photoURL } = user;
+        dispatch(
+          addUser({
+            uid: uid,
+            email: email,
+            displayName: displayName,
+            photoURL: photoURL,
+          })
+        );
+        navigate("/browse")
 
-  },[user])
-  const navigate = useNavigate()
+
+        // ...
+      } else {
+        // User is signed out
+        // ...
+        dispatch(removeUser());
+        navigate("/")
+      }
+    });
+  }, []);
+  
+
+
+  
 
   const handleSignOut=()=>{
     signOut(auth).then(() => {
       
 
       // Sign-out successful.
-      navigate("/")
+      
      
     }).catch((error) => {
       // An error happened.
@@ -33,7 +59,7 @@ function Header() {
 
   return (
     <div>
-      {showUserHeader ? (
+      {user ? (
         <div>
           <div className="absolute sm:px-32 justify-between flex px-4 py-4 sm:py-6 z-50 bg-gradient-to-b  w-full from-gray-950 ">
             <div className="text-gray-300 gap-2 flex items-center ">

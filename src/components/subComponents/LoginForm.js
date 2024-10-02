@@ -5,7 +5,7 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { auth } from "../../utils/firebase";
-import { useNavigate } from "react-router-dom";
+
 import { USER_ICON } from "../../utils/constants";
 import { updateProfile } from "firebase/auth";
 import { addUser } from "../../utils/userSlice";
@@ -14,7 +14,7 @@ import { useDispatch } from "react-redux";
 function LoginForm() {
   const [toggleSignup, setToggleSignup] = useState(false);
   const [LoginErrorMessage, setLoginErrorMessage] = useState(null);
-  const navigate = useNavigate();
+  
   const dispatch=useDispatch()
 
   const email = useRef(null);
@@ -54,7 +54,7 @@ function LoginForm() {
         );
             
 
-            navigate("/browse");
+            // navigate("/browse");
             // console.log(user)
             // Profile updated!
             // ...
@@ -81,7 +81,7 @@ function LoginForm() {
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
-         navigate("/browse")
+        //  navigate("/browse")
           
           // ...
         })
