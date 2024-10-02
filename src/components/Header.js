@@ -1,14 +1,39 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NETFLIX_LOGO, USER_ICON } from "../utils/constants";
 import { useSelector } from "react-redux";
+import { signOut } from "firebase/auth";
+import { auth } from "../utils/firebase";
+import { useNavigate } from "react-router-dom";
 
 function Header() {
   const user = useSelector((state) => state.user);
   const [showUserIcon, setShowUserIcon] = useState(false);
+  const [showUserHeader,setShowUserHeader]=useState(false)
+
+  useEffect(()=>{
+    if(user){
+      setShowUserHeader(true)
+    }
+
+  },[user])
+  const navigate = useNavigate()
+
+  const handleSignOut=()=>{
+    signOut(auth).then(() => {
+      
+
+      // Sign-out successful.
+      navigate("/")
+     
+    }).catch((error) => {
+      // An error happened.
+    });
+
+  }
 
   return (
     <div>
-      {user ? (
+      {showUserHeader ? (
         <div>
           <div className="absolute sm:px-32 justify-between flex px-4 py-4 sm:py-6 z-50 bg-gradient-to-b  w-full from-gray-950 ">
             <div className="text-gray-300 gap-2 flex items-center ">
@@ -24,6 +49,7 @@ function Header() {
             </div>
             <div className="justify-between items-center gap-7 flex text-white">
               <i class="fa-solid fa-magnifying-glass text-xl"></i>
+              {user && user.displayName}
 
               <i class="fa-regular fa-bell text-xl"></i>
 
@@ -69,7 +95,7 @@ function Header() {
                     </li>
                     <hr className="w-full border-gray-700 " />
 
-                    <li className="w-full pb-2 text-center">
+                    <li onClick={()=>handleSignOut()} className="w-full pb-2 text-center cursor-pointer">
                       Sign out of Netfix
                     </li>
                   </ul>
