@@ -5,10 +5,12 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { auth } from "../../utils/firebase";
+import { useNavigate } from "react-router-dom";
 
 function LoginForm() {
   const [toggleSignup, setToggleSignup] = useState(false);
   const [LoginErrorMessage, setLoginErrorMessage] = useState(null);
+  const navigate = useNavigate();
 
   const email = useRef(null);
   const password = useRef(null);
@@ -31,6 +33,7 @@ function LoginForm() {
         .then((userCredential) => {
           // Signed up
           const user = userCredential.user;
+          navigate("/browse");
 
           // ...
         })
@@ -49,12 +52,14 @@ function LoginForm() {
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
+          navigate("/browse");
           // ...
         })
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
-          setLoginErrorMessage(errorCode + "-" + errorMessage);
+          if (errorCode == "auth/invalid-credential")
+            setLoginErrorMessage("User not found");
         });
     }
   };
