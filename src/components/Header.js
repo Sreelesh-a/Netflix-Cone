@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { NETFLIX_LOGO, USER_ICON } from "../utils/constants";
+
 import { useDispatch, useSelector } from "react-redux";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../utils/firebase";
@@ -105,7 +106,7 @@ function Header() {
                   <i class="fa-solid fa-caret-down"></i>
                 )}
               </div>
-              <div className= "absolute z-50 text-white right-32 mt-24 w-64 bg-black bg-opacity-50 px-5 py-7">
+              <div className= "absolute z-50 text-white right-32 mt-24 w-64 bg-black bg-opacity-80 px-5 py-7">
                 <div>
                   <ul className="flex-wrap flex gap-y-8 text-lg font-light">
                     <li className="w-full">
