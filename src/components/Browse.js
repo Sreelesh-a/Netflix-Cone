@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Header from "./Header";
+import useNowPlaying from "../hooks/useNowPlaying";
+import MainContainer from "./MainContainer";
 
 const Browse = () => {
+  useNowPlaying()
   return (
-  <div className="bg-gray-900 h-screen">
-    <Header/>
-    
-  </div>)
+    <div className="bg-black h-screen">
+      <Header />
+      <MainContainer/>
+
+    </div>
+  );
 };
 
 export default Browse;
+ 
