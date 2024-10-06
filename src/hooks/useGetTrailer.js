@@ -16,7 +16,7 @@ const useGetTrailer=(props)=>{
         const json = await data.json()
         const trailer= json?.results.filter((res)=>res?.type=="Trailer" )
         
-        const trailerKey=trailer[1]?.key
+        const trailerKey=trailer[0]?.key ? trailer[0]?.key : json?.results[0]?.key
         const trailerURL="https://www.youtube.com/watch?v="+trailerKey
         dispatch(addTrailer(trailerKey))
         
