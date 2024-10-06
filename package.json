@@ -10,10 +10,13 @@
     "ajv": "^8.17.1",
     "ajv-keywords": "^5.1.0",
     "firebase": "^10.13.2",
+    "lucide-react": "^0.447.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-redux": "^9.1.2",
     "react-scripts": "^5.0.1",
+    "react-slick": "^0.30.2",
+    "slick-carousel": "^1.8.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

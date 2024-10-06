@@ -4,17 +4,17 @@ import { useSelector } from 'react-redux'
 
 const VideoBG = ({id}) => {
 
-    const getTrailerData= useGetTrailer(id)
+    useGetTrailer(id)
     const trailerKey= useSelector((store)=>store.movies?.trailer)
     
   return (
     <div className=''>
-        <div className="">
-          <div className='absolute z-50 bottom-12 bg-black w-full h-12 '> hai
+        <div className="overflow-hidden ">
+          {/* <div className='absolute z-50  bottom-12 bg-red-700 w-full h-11 '> 
 
-          </div>
+          </div> */}
       <iframe
-        className="absolute bottom-12 w-full aspect-video "
+        className=" w-screen aspect-video   scale-125"
         src={`https://www.youtube.com/embed/${trailerKey}?autoplay=1&controls=0&showinfo=0&rel=0&loop=1&playlist=${trailerKey}&mute=1&modestbranding=1&iv_load_policy=3`}
         frameBorder="0"
         allow="autoplay; encrypted-media"
