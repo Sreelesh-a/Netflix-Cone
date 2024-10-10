@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { NETFLIX_LOGO, USER_ICON } from "../utils/constants";
+// import { signOut } from "firebase/auth";
+import { auth } from "../utils/firebase";
 
 import { useDispatch, useSelector } from "react-redux";
 import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "../utils/firebase";
+
 import { useNavigate } from "react-router-dom";
 import { addUser, removeUser } from "../utils/userSlice";
 import AccountHover from "./subComponents/AccountHover";
@@ -14,6 +16,11 @@ function Header() {
   const [showUserIcon, setShowUserIcon] = useState(false);
   // const [showUserHeader, setShowUserHeader] = useState(false);
   const dispatch = useDispatch();
+
+
+  
+
+  
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -44,10 +51,11 @@ function Header() {
 
 
   return (
-    <div>
+    <div className="relative">
       {user ? (
         <div className="">
           <div className="absolute sm:px-12 justify-between flex px-4 py-4 sm:py-6 z-50 bg-gradient-to-b  w-full from-gray-950 ">
+            
             <div className="text-gray-300 gap-2 flex items-center ">
               <img className="w-44 " src={NETFLIX_LOGO} alt="Logo" />
               <ul className="flex gap-4 text-xs">
@@ -81,9 +89,10 @@ function Header() {
                 </div>
               </div>
             </div>
+            
           </div>
           {showUserIcon && (
-            <div >
+            <div className="">
               <AccountHover showUserIcon={showUserIcon} />
             </div>
           )}
