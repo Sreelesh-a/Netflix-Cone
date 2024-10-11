@@ -60,7 +60,7 @@ const MovieListRow = ({ title, movies }) => {
       
    
   return (
-    <div className={` flex flex-wrap gap-y-3 w-full px-12 ${handleAbsolute && `absolute z-50 bottom-8 `}`}>
+    <div className={` flex flex-wrap gap-y-3 w-full px-12 ${handleAbsolute && `absolute z-50 bottom-0 `}`}>
       <div  className=" text-white font-light w-full">
         <div className="text-white font-medium">{title}</div>
       </div>

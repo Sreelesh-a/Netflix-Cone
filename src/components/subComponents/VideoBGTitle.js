@@ -2,7 +2,7 @@ import React from "react";
 
 const VideoBGTitle = ({ title, overview }) => {
   return (
-    <div className="w-full absolute z-50 bottom-0 py-64 px-12 left-0 text-white bg-gradient-to-t from-black">
+    <div className="w-full absolute z-50 -bottom-4 py-64 px-12 left-0 text-white bg-gradient-to-t from-black">
       <div>
         <div className="flex flex-wrap w-1/2 gap-y-4">
           <div className="w-full font-bold text-6xl">{title}</div>
