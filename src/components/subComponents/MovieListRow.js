@@ -12,6 +12,7 @@ const MovieListRow = ({ title, movies }) => {
     const [showPrevArrow,setSHowPrevArrow]=useState(false)
     const [isFirstSLide,setIsFirstSlide]=useState(false)
     let handleAbsolute= title === "Now Playing"
+   
     let topRatedRow= title=== "Top Rated"
 
     
