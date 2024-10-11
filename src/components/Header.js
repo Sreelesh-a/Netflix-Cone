@@ -54,7 +54,7 @@ function Header() {
     <div className="relative">
       {user ? (
         <div className="">
-          <div className="absolute sm:px-12 justify-between flex px-4 py-4 sm:py-6 z-50 bg-gradient-to-b  w-full from-gray-950 ">
+          <div  className="absolute sm:px-12 justify-between flex px-4 py-4 sm:py-6 z-100 bg-gradient-to-b  w-full from-gray-950 ">
             
             <div className="text-gray-300 gap-2 flex items-center ">
               <img className="w-44 " src={NETFLIX_LOGO} alt="Logo" />
