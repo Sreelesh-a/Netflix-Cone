@@ -17,7 +17,7 @@ const MainContainer = () => {
     
   return (
     <div>
-      <div className=''> <MovieListRow title={"Now Playing"} movies={movie}/></div>
+      <MovieListRow title={"Now Playing"} movies={movie}/>
      
       <VideoBGTitle title={title} overview={overview}/>
       <VideoBG id={id}/>

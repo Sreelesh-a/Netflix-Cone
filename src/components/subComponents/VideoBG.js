@@ -14,7 +14,7 @@ const VideoBG = ({id}) => {
 
           </div> */}
       <iframe
-        className=" w-screen aspect-video   scale-125"
+        className=" w-screen aspect-video -mt-10   scale-125"
         src={`https://www.youtube.com/embed/${trailerKey}?autoplay=1&controls=0&showinfo=0&rel=0&loop=1&playlist=${trailerKey}&mute=1&modestbranding=1&iv_load_policy=3`}
         frameBorder="0"
         allow="autoplay; encrypted-media"
