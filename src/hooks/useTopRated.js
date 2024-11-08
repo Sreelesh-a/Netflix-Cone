@@ -8,7 +8,7 @@ const useTopRated=()=>{
     const dispatch =useDispatch()
 
 const  GetNowPlayingMovies= async()=>{
-  const data= await fetch('https://api.themoviedb.org/3/movie/top_rated?page=1', TMDB_API_OPTIONS)
+  const data= await fetch('https://api.themoviedb.org/3/movie/top_rated?page=2', TMDB_API_OPTIONS)
   const json= await data.json()
  
   dispatch(addTopRated(json?.results))
