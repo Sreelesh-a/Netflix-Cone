@@ -5,6 +5,7 @@ import MainContainer from "./MainContainer";
 import SecondaryContainer from "./SecondaryContainer";
 import usePopular from "../hooks/usePopular";
 import useTopRated from "../hooks/useTopRated";
+import GPTPage from "./subComponents/GPTPage";
 
 const Browse = () => {
   useNowPlaying()
@@ -13,6 +14,7 @@ const Browse = () => {
   return (
     <div className="bg-black ">
       <Header />
+      <GPTPage/>
       <MainContainer/>
       <SecondaryContainer/>
       
