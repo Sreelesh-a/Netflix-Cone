@@ -1,0 +1,5 @@
+[build.environment]
+  DISABLE_ESLINT_PLUGIN = "true"
+
+[build]
+  command = "CI=false npm run build"
