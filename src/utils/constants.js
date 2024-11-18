@@ -12,7 +12,11 @@ module.exports = {
       }
     },
     TMDB_IMG_LINK_W_500:"https://image.tmdb.org/t/p/w500",
-    TMDB_IMG_LINK_ORIGINAL:"https://image.tmdb.org/t/p/original"
+    TMDB_IMG_LINK_ORIGINAL:"https://image.tmdb.org/t/p/original",
+    OPEN_AI_API_KEY:process.REACT_APP_OPEN_AI
+    
+
+
 };
 
 
