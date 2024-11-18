@@ -1,8 +1,20 @@
-import React, { useEffect } from "react";
+import React, { Children, useEffect } from "react";
 import Login from "./Login";
 import Browse from "./Browse";
 import { createBrowserRouter } from "react-router-dom";
 import { RouterProvider } from "react-router-dom";
+import MovieDetails from "./MovieDetails";
+import ScrollToTop from "../utils/ScrollToTop";
+
+
+// const Layout =({childrem})=>{
+//   return(
+//     <>
+//     <ScrollToTop/>
+//     {childrem}
+//     </>
+//   )
+// }
 
 
 
@@ -19,13 +31,19 @@ function Body() {
     {
       path: "/browse",
       element: <Browse />,
+   
     },
+    {
+      path:"/movie/:id",
+      element:<MovieDetails/>
+    }
   ]);
 
 
 
   return (
     <div className="">
+
       <RouterProvider router={appRouter} />
     </div>
   );

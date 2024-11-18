@@ -12,10 +12,12 @@ import AccountHover from "./subComponents/AccountHover";
 
 function Header() {
   const navigate = useNavigate();
-  const user = useSelector((state) => state.user);
+  const user = useSelector((state) => state.user.user);
   const [showUserIcon, setShowUserIcon] = useState(false);
   // const [showUserHeader, setShowUserHeader] = useState(false);
   const dispatch = useDispatch();
+
+
 
 
   
@@ -54,11 +56,12 @@ function Header() {
     <div className="relative">
       {user ? (
         <div className="">
-          <div  className="absolute sm:px-12 justify-between flex px-4 py-4 sm:py-6 z-100 bg-gradient-to-b  w-full from-gray-950 ">
+          <div  className="fixed sm:px-12 justify-between flex px-4 py-4 sm:py-6 z-100 bg-gradient-to-b  w-full from-gray-950 ">
             
-            <div className="text-gray-300 gap-2 flex items-center ">
+            <div className="text-gray-300 gap-2 flex items-center  ">
               <img className="w-44 " src={NETFLIX_LOGO} alt="Logo" />
-              <ul className="flex gap-4 text-xs">
+              <div className="hidden sm:block">
+              <ul className="flex gap-4 text-xs ">
                 <li>Home</li>
                 <li>TV SHows</li>
                 <li>Movies</li>
@@ -66,12 +69,15 @@ function Header() {
                 <li>My List</li>
                 <li>Browse My Language</li>
               </ul>
+              </div>
             </div>
             <div className="justify-between items-center gap-7 flex text-white">
-              <i class="fa-solid fa-magnifying-glass text-xl"></i>
-              {user && user.displayName}
+              <i class="fa-solid fa-magnifying-glass text-xl hidden sm:block"></i>
+              <div className=""> {user && user.displayName}</div>
+              <div className="hidden sm:block"><i class="fa-regular fa-bell text-xl"></i></div>
+             
 
-              <i class="fa-regular fa-bell text-xl"></i>
+              
 
               <div
                 // onMouseOver={() => setShowUserIcon(true)}

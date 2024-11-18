@@ -8,6 +8,7 @@ export const movieSlice = createSlice({
         trailer:null,
         popular:null,
         topRated:null,
+        
     },
     reducers:{
         addNowPlaying:(state,action)=>{

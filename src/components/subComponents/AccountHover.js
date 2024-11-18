@@ -13,7 +13,7 @@ const AccountHover = ({ showUserIcon }) => {
       })
   }
   return (
-    <div className="absolute z-100 right-10 mt-20 ">
+    <div className="fixed z-100 right-3 sm:right-10 mt-20 ">
       <div className="text-gray-200  text-xl  ml-52">
         
         <i class="fa-solid fa-caret-up "></i>

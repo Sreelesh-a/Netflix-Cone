@@ -2,7 +2,7 @@ import React from 'react'
 import VideoBG from './subComponents/VideoBG'
 import VideoBGTitle from './subComponents/VideoBGTitle'
 import { useSelector } from 'react-redux'
-import MovieListRow from './subComponents/MovieListRow'
+// import MovieListRow from './subComponents/MovieListRow'
 
 
 const MainContainer = () => {
@@ -17,7 +17,7 @@ const MainContainer = () => {
     
   return (
     <div>
-      <MovieListRow title={"Now Playing"} movies={movie}/>
+     
      
       <VideoBGTitle title={title} overview={overview}/>
       <VideoBG id={id}/>

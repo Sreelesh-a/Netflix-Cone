@@ -4,9 +4,11 @@ import { useSelector } from 'react-redux'
 
 const SecondaryContainer = () => {
   const movies= useSelector((state)=>state.movies)
+  
  
   return (
-    <div className='text-white bg-black text-xl  flex flex-wrap gap-y-10 pb-10'>
+    <div className='text-white bg-black text-xl  flex flex-wrap sm:gap-y-10 gap-y-3 pb-28 -mt-52 sm:-mt-32 '>
+       {/* <MovieListRow title={"Now Playing"} movies={movies?.nowPlaying}/> */}
       <MovieListRow title={"Now Playing"} movies={movies?.nowPlaying}/>
       <MovieListRow title={"Popular"} movies={movies?.popular}/>
       <MovieListRow title={"Top Rated"} movies={movies?.topRated}/>
