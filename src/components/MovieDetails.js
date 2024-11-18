@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import Header from "./Header";
 import SecondaryContainer from "./SecondaryContainer";
@@ -20,9 +20,15 @@ const MovieDetails = () => {
   // useUserValidate()
   const userData = useSelector((store) => store.user.user);
 
-  if (!userData) {
-    navigate("/");
-  }
+  useEffect(()=>{
+    if (!userData) {
+      navigate("/");
+    }
+
+
+  },[userData])
+
+
 
   useGetMovieDetails(id);
   useGetRecommendMovie(id);
