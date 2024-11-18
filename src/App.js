@@ -1,14 +1,19 @@
 import Body from "./components/Body";
 import { Provider } from "react-redux";
-import appStore from "./utils/appStore";
+// import {store} from "./utils/appStore";
+import { persistor, store } from "./utils/appStore";
+import { PersistGate } from "redux-persist/integration/react";
 
 
 function App() {
   return (
     <div className="bg-black">
-      <Provider store={appStore}>
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
       <Body />
+      </PersistGate>
       </Provider>
+      
     </div>
   );
 }

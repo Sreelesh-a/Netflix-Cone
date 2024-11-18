@@ -1,16 +1,15 @@
 import React, { useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import Header from "./Header";
-import SecondaryContainer from "./SecondaryContainer";
+// import Header from "./Header";
+// import SecondaryContainer from "./SecondaryContainer";
 import useGetMovieDetails from "../hooks/useGetMovieDetails";
 import {
-  TMDB_IMG_LINK_ORIGINAL,
   TMDB_IMG_LINK_W_500,
 } from "../utils/constants";
 import { useSelector } from "react-redux";
 import useGetRecommendMovie from "../hooks/useGetRecommendMovie";
 import MovieListRow from "./subComponents/MovieListRow";
-import useUserValidate from "../utils/useUserValidate";
+// import useUserValidate from "../utils/useUserValidate";
 import Footer from "./Footer";
 
 const MovieDetails = () => {
@@ -21,12 +20,13 @@ const MovieDetails = () => {
   const userData = useSelector((store) => store.user.user);
 
   useEffect(()=>{
+    
     if (!userData) {
       navigate("/");
     }
 
 
-  },[userData])
+  },[userData,navigate])
 
 
 

@@ -8,26 +8,27 @@ const useGetRecommendMovie = (id) => {
   const [movieData, setMovieData] = useState(null);
   const dispatch = useDispatch();
 
-  const fetchMovieDetails = async () => {
-    try {
-      const response = await fetch(`https://api.themoviedb.org/3/movie/${id}/recommendations?language=en-US&page=1`,
-        TMDB_API_OPTIONS
-      );
-
-      if (!response) {
-        throw new Error("Failed to fetch Movie Details");
-      }
-      const data = await response.json();
-      setMovieData(data);
-    } catch (err) {
-      console.error("error - movie Details :", err);
-    }
-  };
+ 
 
 
 
   useEffect(() => {
     if (id) {
+      const fetchMovieDetails = async () => {
+        try {
+          const response = await fetch(`https://api.themoviedb.org/3/movie/${id}/recommendations?language=en-US&page=1`,
+            TMDB_API_OPTIONS
+          );
+    
+          if (!response) {
+            throw new Error("Failed to fetch Movie Details");
+          }
+          const data = await response.json();
+          setMovieData(data);
+        } catch (err) {
+          console.error("error - movie Details :", err);
+        }
+      };
       fetchMovieDetails();
     }
   }, [id,dispatch]);

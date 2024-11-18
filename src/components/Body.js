@@ -1,10 +1,11 @@
-import React, { Children, useEffect } from "react";
+import React from "react";
 import Login from "./Login";
 import Browse from "./Browse";
 import { createBrowserRouter } from "react-router-dom";
 import { RouterProvider } from "react-router-dom";
 import MovieDetails from "./MovieDetails";
-import ScrollToTop from "../utils/ScrollToTop";
+// import ScrollToTop from "../utils/ScrollToTop";
+import ErrorPage from "./subComponents/ErrorPage";
 
 
 // const Layout =({childrem})=>{
@@ -27,6 +28,10 @@ function Body() {
     {
       path: "/",
       element: <Login />,
+    },
+    {
+      path:"*",
+      element:<ErrorPage/>
     },
     {
       path: "/browse",
