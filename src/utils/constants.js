@@ -8,7 +8,7 @@ module.exports = {
       method: 'GET',
       headers: {
         accept: 'application/json',
-        Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkZjI0YjQyNmJjODgwNmNkNDI4NzZjZTI5NzRmNTFjNSIsIm5iZiI6MTcyNzk2MzY4NS4yNDY3MzEsInN1YiI6IjY2ZmVhMDYyNmZjNzRlNTc1NmY3ZDRlMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.qvp1wlRYSWcWmKVKybHXwRG0LpQYHv9bY4EN3FCAobM'
+        Authorization: 'Bearer '+process.env.REACT_APP_TMDB_API
       }
     },
     TMDB_IMG_LINK_W_500:"https://image.tmdb.org/t/p/w500",
