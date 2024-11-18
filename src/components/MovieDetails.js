@@ -69,7 +69,7 @@ const MovieDetails = () => {
               </div> */}
             </div>
             <div className="sm:mt-4">
-              <ul className="flex   gap-x-3 file: sm:gap-x-6">
+              <ul className="flex flex-wrap gap-y-2   gap-x-3 file: sm:gap-x-6">
                 {movieData?.genres &&
                   movieData?.genres.map((data, index) => (
                     <li key={index}>{data?.name}</li>
