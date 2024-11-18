@@ -92,7 +92,8 @@ const MovieDetails = () => {
                 </div>
                 <div className="flex flex-wrap items-center text-center">
                   <div className="w-full mx-auto ">
-                    <i class="fa-solid fa-circle-info font-light text-3xl"></i>
+                  {/* <i class="fa-solid fa-circle-info "/> */}
+                  <i class="fa-solid fa-circle-info   text-3xl"></i>
                     <div className="">info</div>
                   </div>
                 </div>
