@@ -9,7 +9,7 @@ const MainContainer = () => {
 
     const movie = useSelector((store)=>store.movies?.nowPlaying)
     if(!movie) return;
-    const topMovie= movie[1]
+    const topMovie= movie[2]
     const {title,overview}=topMovie
     const id= topMovie?.id 
  
@@ -19,7 +19,7 @@ const MainContainer = () => {
     <div>
      
      
-      <VideoBGTitle title={title} overview={overview}/>
+      <VideoBGTitle title={title} id={id} overview={overview}/>
       <VideoBG id={id}/>
     </div>
   )
