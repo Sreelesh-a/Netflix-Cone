@@ -40,7 +40,17 @@ const MovieDetails = () => {
 
   return (
     <>
-      <div className=" px-8 bg-gray-900 sm:px-32 py-6 sm:py-20 text-white pb-20">
+     <div className="text-white py-5 fixed   bottom-20 right-10 z-50">
+          <Link to={"/"}>
+            <div
+              className="size-20  text-center text-lg bg-red-700 rounded-full flex justify-center items-center"
+              onClick={() => window.scrollTo(0, 0)}
+            >
+           <i class="fa-solid fa-house "></i>
+            </div>
+          </Link>
+        </div>
+      <div className=" px-8 bg-gray-900 sm:px-32 py-6 sm:py-20 text-white pb-32">
         <div className="flex flex-wrap">
           <div className="sm:w-[35%]">
             {movieData?.poster_path ? (
@@ -55,6 +65,7 @@ const MovieDetails = () => {
               </div>
             )}
           </div>
+          
 
           
          
@@ -134,16 +145,7 @@ const MovieDetails = () => {
             />
           </div>
         </div>
-        <div className="text-white py-5">
-          <Link to={"/"}>
-            <div
-              className="py-5 text-center text-lg bg-red-700 rounded-full cursor-pointer"
-              onClick={() => window.scrollTo(0, 0)}
-            >
-              Return to Home
-            </div>
-          </Link>
-        </div>
+       
       </div>
 
       <Footer />

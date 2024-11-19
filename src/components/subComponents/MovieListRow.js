@@ -51,7 +51,7 @@ const MovieListRow = ({ title, movies,recommend }) => {
         breakpoint: 480,
         settings: {
           slidesToShow: 3,
-          slidesToScroll: 2,
+          slidesToScroll: 3,
         },
       },
     ],

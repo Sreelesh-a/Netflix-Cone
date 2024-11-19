@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getRecommendMovies } from "../utils/userSlice";
 
 const { useEffect, useState } = require("react");
@@ -8,6 +8,8 @@ const useGetRecommendMovie = (id) => {
   const [movieData, setMovieData] = useState(null);
   const dispatch = useDispatch();
 
+  const recommendedMovieCheck = useSelector(store=>store.user.recommendMovies)
+  
  
 
 
@@ -29,9 +31,9 @@ const useGetRecommendMovie = (id) => {
           console.error("error - movie Details :", err);
         }
       };
-      fetchMovieDetails();
+      !recommendedMovieCheck && fetchMovieDetails();
     }
-  }, [id,dispatch]);
+  }, [id,recommendedMovieCheck]);
 
 //   console.log(movieData?.results)
 

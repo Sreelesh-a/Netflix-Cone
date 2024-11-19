@@ -8,35 +8,39 @@ const useGetMovieDetails = (id) => {
   const [movieData, setMovieData] = useState(null);
   const dispatch = useDispatch();
 
-  const fetchMovieDetails = async () => {
-    try {
-      const response = await fetch(
-        `https://api.themoviedb.org/3/movie/${id}?language=en-US`,
-        TMDB_API_OPTIONS
-      );
+  // const movieDetailsfetch = useSelector((store) => store.user.movieDetails);
+  // console.log(movieDetailsfetch);
 
-      if (!response) {
-        throw new Error("Failed to fetch Movie Details");
-      }
-      const data = await response.json();
-      setMovieData(data);
-    } catch (err) {
-      console.error("error - movie Details :", err);
-    }
-  };
+
 
   // if(movieData){
   //     return movieData
   // }
 
   useEffect(() => {
+    const fetchMovieDetails = async () => {
+      try {
+        const response = await fetch(
+          `https://api.themoviedb.org/3/movie/${id}?language=en-US`,
+          TMDB_API_OPTIONS
+        );
+  
+        if (!response) {
+          throw new Error("Failed to fetch Movie Details");
+        }
+        const data = await response.json();
+        setMovieData(data);
+      } catch (err) {
+        console.error("error - movie Details :", err);
+      }
+    };
     if (id) {
       fetchMovieDetails();
     }
-  }, [id,dispatch]);
+  }, [id, dispatch]);
 
   // return movieData;
-  dispatch(addMovieSubDetails(movieData))
+  dispatch(addMovieSubDetails(movieData));
 };
 
 export default useGetMovieDetails;
